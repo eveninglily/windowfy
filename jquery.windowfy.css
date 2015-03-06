@@ -1,4 +1,4 @@
-﻿.jquery-DraggableWindow {
+﻿.windowfy{
     z-index: 1001;
     position: absolute;
     border: 1px solid black;
@@ -6,17 +6,17 @@
     min-width: 100px;
 }
 
-.grab {
+.windowfy-grab {
     cursor: -webkit-grab;
     cursor: -moz-grab;
 }
 
-.grabbing {
+.windowfy-grabbing {
     cursor: -webkit-grabbing;
     cursor: -moz-grabbing;
 }
 
-.windowTitle {
+.windowfy-title {
     width: 80%;
     float: left;
     display: inline-block;
@@ -25,32 +25,32 @@
     overflow: hidden;
 }
 
-.options {
+.windowfy-options {
     width: 20%;
     display: table;
     text-align: center;
     cursor: default;
 }
 
-.exit {
+.windowfy-exit {
     display: table-cell;
     background: #EBEBEB;
     transition: background linear .3s;
 }
 
-.exit:hover{
+.windowfy-exit:hover{
     background: #E04343;
     color: white;
     transition: background linear .3s;
 }
 
-.minimize {
+.windowfy-minimize {
     display: table-cell;
     background: #EBEBEB;
     transition: background linear .3s;
 }
 
-.minimize:hover {
+.windowfy-minimize:hover {
     background: #3665B3;
     color: white;
     transition: background linear .3s;

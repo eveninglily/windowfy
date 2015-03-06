@@ -1,7 +1,7 @@
 (function ($) {
     $('head').append('<link rel="stylesheet" href="jquery.windowfy.css" type="text/css" />');
     $.fn.windowfy = function (params) {
-        params = this.extend({ title: 'Window' } , params);
+        params = this.extend({ title: 'Window', minimize: true, close: true } , params);
         return this.each(function () {
             var body = this;
 
@@ -21,20 +21,26 @@
                 class: 'windowfy-options'
             }).appendTo(header);
 
-            var hide = $('<div/>').attr({
-                class: 'windowfy-minimize'
-            }).html('-').on('click', function () {
-                $(body).toggle();
-            }).appendTo(options);
+            if (params.minimize) {
+                $('<div/>').attr({
+                    class: 'windowfy-minimize'
+                }).html('-').on('click', function () {
+                    $(body).toggle();
+                }).appendTo(options);
+            }
 
-            var e = $('<div/>').attr({
-                class: 'windowfy-exit'
-            }).html('x').on('click', function () {
-                holder.remove();
-            }).appendTo(options);
+            if (params.close) {
+                $('<div/>').attr({
+                    class: 'windowfy-exit'
+                }).html('x').on('click', function () {
+                    holder.remove();
+                }).appendTo(options);
+            }
 
             holder.append(header).append(body);
-
+            if (!params.close && !params.minimize) {
+                title.css('width', '100%');
+            }
             var offsetX = 0;
             var offsetY = 0;
 

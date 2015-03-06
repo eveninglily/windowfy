@@ -1,0 +1,57 @@
+﻿.jquery-DraggableWindow {
+    z-index: 1001;
+    position: absolute;
+    border: 1px solid black;
+    background: white;
+    min-width: 100px;
+}
+
+.grab {
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+}
+
+.grabbing {
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+}
+
+.windowTitle {
+    width: 80%;
+    float: left;
+    display: inline-block;
+    text-align: center;
+    background: #EBEBEB;
+    overflow: hidden;
+}
+
+.options {
+    width: 20%;
+    display: table;
+    text-align: center;
+    cursor: default;
+}
+
+.exit {
+    display: table-cell;
+    background: #EBEBEB;
+    transition: background linear .3s;
+}
+
+.exit:hover{
+    background: #E04343;
+    color: white;
+    transition: background linear .3s;
+}
+
+.minimize {
+    display: table-cell;
+    background: #EBEBEB;
+    transition: background linear .3s;
+}
+
+.minimize:hover {
+    background: #3665B3;
+    color: white;
+    transition: background linear .3s;
+}

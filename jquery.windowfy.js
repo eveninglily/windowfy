@@ -69,9 +69,9 @@
                 title.addClass('windowfy-grab');
                 title.removeClass('windowfy-grabbing');
             }).on('mousemove', function (evt) {
-                evt.preventDefault();
-                document.getSelection().removeAllRanges();
                 if (title.hasClass('windowfy-grabbing')) {
+                    evt.preventDefault();
+                    document.getSelection().removeAllRanges();
                     holder.css({ left: (evt.pageX - offsetX) + 'px' });
                     holder.css({ top: (evt.pageY - offsetY) + 'px' });
                 }

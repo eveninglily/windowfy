@@ -5,7 +5,7 @@
             title: 'Window',
             minimize: true,
             close: true,
-            exitmode: 'destroy',
+            destroyOnClose: true,
             id: ''
         }, params);
         return this.each(function () {
@@ -40,15 +40,11 @@
                 $('<div/>').attr({
                     class: 'windowfy-exit'
                 }).html('x').on('click', function () {
-                    switch (params.exitmode) {
-                        case 'destroy': {
-                            holder.remove();
-                            break;
-                        }
-                        case 'hide': {
-                            holder.hide();
-                            break;
-                        }
+                    if (params.destroyOnClose) {
+                        holder.remove();
+                    }
+                    else {
+                        holder.hide();
                     }
                 }).appendTo(options);
             }

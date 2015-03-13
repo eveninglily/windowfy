@@ -2,8 +2,10 @@
     z-index: 1001;
     position: absolute;
     border: 1px solid black;
-    background: white;
     min-width: 100px;
+    padding: 3px;
+    background: #eeeeee;
+    margin: 0px;
 }
 
 .windowfy-grab {

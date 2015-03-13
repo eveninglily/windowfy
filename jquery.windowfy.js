@@ -1,19 +1,20 @@
 (function ($) {
     $('head').append('<link rel="stylesheet" href="windowfy/jquery.windowfy.css" type="text/css" />');
-    $.fn.windowfy = function (params) {
-        params = this.extend({
+    $.widget('windowfy.windowfy', {
+        params: {
             title: 'Window',
             minimize: true,
             close: true,
             destroyOnClose: true,
             id: ''
-        }, params);
-        return this.each(function () {
-            var body = this;
+        },
+
+        _create: function() {
+            var body = $('<div>').css('background', 'white').append(this.element);
 
             var holder = $('<div/>').attr({
                 class: 'windowfy',
-                id: params.id
+                id: this.params.id
             }).appendTo('body');
 
             var header = $('<div/>').attr({
@@ -22,13 +23,13 @@
 
             var title = $('<div/>').attr({
                 class: 'windowfy-title windowfy-grab'
-            }).html(params.title).appendTo(header);
+            }).html(this.params.title).appendTo(header);
 
             var options = $('<div/>').attr({
                 class: 'windowfy-options'
             }).appendTo(header);
 
-            if (params.minimize) {
+            if (this.params.minimize) {
                 $('<div/>').attr({
                     class: 'windowfy-minimize'
                 }).html('-').on('click', function () {
@@ -36,11 +37,11 @@
                 }).appendTo(options);
             }
 
-            if (params.close) {
+            if (this.params.close) {
                 $('<div/>').attr({
                     class: 'windowfy-exit'
                 }).html('x').on('click', function () {
-                    if (params.destroyOnClose) {
+                    if (this.params.destroyOnClose) {
                         holder.remove();
                     }
                     else {
@@ -50,7 +51,7 @@
             }
 
             holder.append(header).append(body);
-            if (!params.close && !params.minimize) {
+            if (!this.params.close && !this.params.minimize) {
                 title.css('width', '100%');
             }
             var offsetX = 0;
@@ -72,7 +73,6 @@
                     holder.css({ top: (evt.pageY - offsetY) + 'px' });
                 }
             });
-            return this;
-        });
-    };
+        }
+    });
 })( jQuery );

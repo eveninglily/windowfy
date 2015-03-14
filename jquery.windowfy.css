@@ -8,6 +8,10 @@
     margin: 0px;
 }
 
+.windowfy-body {
+    background: white;
+}
+
 .windowfy-grab {
     cursor: -webkit-grab;
     cursor: -moz-grab;
@@ -27,7 +31,7 @@
     overflow: hidden;
 }
 
-.windowfy-options {
+.windowfy-option {
     width: 20%;
     display: table;
     text-align: center;

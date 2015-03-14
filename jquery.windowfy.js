@@ -1,67 +1,68 @@
 (function ($) {
     $('head').append('<link rel="stylesheet" href="windowfy/jquery.windowfy.css" type="text/css" />');
     $.widget('windowfy.windowfy', {
-        params: {
+        options: {
             title: 'Window',
             minimize: true,
             close: true,
-            destroyOnClose: true,
-            id: ''
+            id: '',
+            onClose: function () {
+                this.window.remove();
+            },
+            onMinimize: function () {
+                this.body.toggle();
+            }
         },
 
-        _create: function() {
-            var body = $('<div>').css('background', 'white').append(this.element);
-
-            var holder = $('<div/>').attr({
+        _create: function () {
+            var _this = this;
+            this.window = $('<div/>').attr({
                 class: 'windowfy',
-                id: this.params.id
+                id: this.options.id
             }).appendTo('body');
 
+            var body = $('<div>').attr('class','windowfy-body').append(this.element);
+            this.body = body;
             var header = $('<div/>').attr({
                 width: '100%'
             });
 
             var title = $('<div/>').attr({
                 class: 'windowfy-title windowfy-grab'
-            }).html(this.params.title).appendTo(header);
+            }).html(this.options.title).appendTo(header);
 
             var options = $('<div/>').attr({
-                class: 'windowfy-options'
+                class: 'windowfy-option'
             }).appendTo(header);
 
-            if (this.params.minimize) {
+            console.log(this.options.close)
+            if (this.options.minimize) {
                 $('<div/>').attr({
                     class: 'windowfy-minimize'
                 }).html('-').on('click', function () {
-                    $(body).toggle();
+                    _this.options.onMinimize.call(_this);
                 }).appendTo(options);
             }
 
-            if (this.params.close) {
+            if (this.options.close) {
                 $('<div/>').attr({
                     class: 'windowfy-exit'
                 }).html('x').on('click', function () {
-                    if (this.params.destroyOnClose) {
-                        holder.remove();
-                    }
-                    else {
-                        holder.hide();
-                    }
+                    _this.options.onClose.call(_this);
                 }).appendTo(options);
             }
 
-            holder.append(header).append(body);
-            if (!this.params.close && !this.params.minimize) {
+            this.window.append(header).append(body);
+            if (!this.options.close && !this.options.minimize) {
                 title.css('width', '100%');
             }
             var offsetX = 0;
             var offsetY = 0;
-
             $(document).on('mousedown', '.windowfy-title', function (evt) {
                 $(this).removeClass('windowfy-grab');
                 $(this).addClass('windowfy-grabbing');
-                offsetX = evt.pageX - holder.offset().left;
-                offsetY = evt.pageY - holder.offset().top;
+                offsetX = evt.pageX - _this.window.offset().left;
+                offsetY = evt.pageY - _this.window.offset().top;
             }).on('mouseup', function () {
                 title.addClass('windowfy-grab');
                 title.removeClass('windowfy-grabbing');
@@ -69,8 +70,8 @@
                 if (title.hasClass('windowfy-grabbing')) {
                     evt.preventDefault();
                     document.getSelection().removeAllRanges();
-                    holder.css({ left: (evt.pageX - offsetX) + 'px' });
-                    holder.css({ top: (evt.pageY - offsetY) + 'px' });
+                    _this.window.css({ left: (evt.pageX - offsetX) + 'px' });
+                    _this.window.css({ top: (evt.pageY - offsetY) + 'px' });
                 }
             });
         }

@@ -9,7 +9,8 @@ $('element').windowfy(params)
     title: 'Title',
     minimize: true,
     close: true,
-    destroyOnClose: true,
-    id: 'UniqueId'
+    onClose: function() {},
+    onMinimize: function() {},
+    id: string
 */
 ````

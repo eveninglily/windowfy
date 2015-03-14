@@ -1,7 +1,7 @@
 {
   "name": "windowfy",
-  "version": "1.2.1",
-  "description": "jquery plugin to create window-based interfaces",
+  "version": "2.0.0",
+  "description": "jquery ui plugin to create window-based interfaces",
   "main": "jquery.windowfy.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,8 @@
     "url": "https://github.com/McIntireEvan/windowfy.git"
   },
   "keywords": [
-    "jquery-plugin"
+    "jquery-plugin",
+    "jquery-ui"
   ],
   "author": "Evan McIntire",
   "license": "MIT",

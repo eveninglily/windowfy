@@ -35,7 +35,6 @@
                 class: 'windowfy-option'
             }).appendTo(header);
 
-            console.log(this.options.close)
             if (this.options.minimize) {
                 $('<div/>').attr({
                     class: 'windowfy-minimize'

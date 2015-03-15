@@ -1,0 +1,66 @@
+$header-color: #EBEBEB;
+
+.windowfy{
+    z-index: 1001;
+    position: absolute;
+    border: 1px solid black;
+    min-width: 100px;
+    padding: 3px;
+    background: #eeeeee;
+    margin: 0px;
+}
+
+.windowfy-body {
+    background: white;
+}
+
+.windowfy-grab {
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+}
+
+.windowfy-grabbing {
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+}
+
+.windowfy-title {
+    width: 80%;
+    float: left;
+    display: inline-block;
+    text-align: center;
+    background: $header-color;
+    overflow: hidden;
+}
+
+.windowfy-option {
+    width: 20%;
+    display: table;
+    text-align: center;
+    cursor: default;
+}
+
+.windowfy-option-base {
+    display: table-cell;
+    background: $header-color;
+    transition: background linear .3s;
+}
+
+.windowfy-option-base:hover {
+    color: white;
+    transition: background linear .3s;
+}
+
+.windowfy-exit, .windowfy-minimize {
+    @extend .windowfy-option-base;
+}
+
+.windowfy-exit:hover {
+    @extend .windowfy-option-base:hover;
+    background: #E04343;
+}
+
+.windowfy-minimize:hover {
+    @extend .windowfy-option-base:hover;
+    background: #3665B3;
+}

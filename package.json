@@ -1,8 +1,8 @@
 {
   "name": "windowfy",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "jquery ui plugin to create window-based interfaces",
-  "main": "jquery.windowfy.js",
+  "main": "bin/jquery.windowfy.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

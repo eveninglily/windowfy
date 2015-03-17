@@ -19,10 +19,10 @@
             this.window = $('<div/>').attr({
                 class: 'windowfy',
                 id: this.options.id
-            }).appendTo('body');
+            }).appendTo(this.element.parent());
 
             var body = $('<div>').attr('class','windowfy-body').append(this.element);
-            this.body = body;
+this.body = body;
             var header = $('<div/>').attr({
                 width: '100%'
             });
@@ -31,16 +31,16 @@
                 class: 'windowfy-title windowfy-grab'
             }).html(this.options.title).appendTo(header);
 
-            var options = $('<div/>').attr({
+            var opts = $('<div/>').attr({
                 class: 'windowfy-option'
             }).appendTo(header);
-
+this.opts = opts;
             if (this.options.minimize) {
                 $('<div/>').attr({
                     class: 'windowfy-minimize'
                 }).html('-').on('click', function () {
                     _this.options.onMinimize.call(_this);
-                }).appendTo(options);
+                }).appendTo(opts);
             }
 
             if (this.options.close) {
@@ -48,7 +48,7 @@
                     class: 'windowfy-exit'
                 }).html('x').on('click', function () {
                     _this.options.onClose.call(_this);
-                }).appendTo(options);
+                }).appendTo(opts);
             }
 
             this.window.append(header).append(body);
@@ -73,6 +73,15 @@
                     _this.window.css({ top: (evt.pageY - offsetY) + 'px' });
                 }
             });
+        },
+
+        addOption: function(html, callback) {
+            var _this = this;
+            $('<div/>').attr({
+                class: 'windowfy-option'
+            }).html('x').on('click', function () {
+                _this.options.onClose.call(_this);
+            }).appendTo(this.opts);
         }
     });
 })( jQuery );

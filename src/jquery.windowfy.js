@@ -1,57 +1,58 @@
 (function ($) {
-    $.widget('windowfy.windowfy', {
-        options: {
-            title: 'Window',
-            minimize: true,
-            close: true,
-            id: '',
-            onClose: function () {
-                this.window.remove();
-            },
-            onMinimize: function () {
-                this.body.toggle();
-            }
-        },
+    $.fn.windowfy = function(options) {
+        return this.each(function() {
+            var options = $.extend({
+                title: 'Window',
+                minimize: true,
+                close: true,
+                id: '',
+                onClose: function () {
+                    outer.remove();
+                },
+                onMinimize: function () {
+                    body.toggle();
+                }
+            }, options);
 
-        _create: function () {
-            var _this = this;
-            this.window = $('<div/>').attr({
+            var element = $(this);
+
+            var outer = $('<div/>').attr({
                 'class': 'windowfy',
-                'id': this.options.id
-            }).appendTo(this.element.parent());
+                'id': options.id
+            }).appendTo(element.parent());
 
-            var body = $('<div>').attr('class','windowfy-body').append(this.element);
-            this.body = body;
+            var body = $('<div>').attr('class','windowfy-body').append(this);
+
             var header = $('<div/>').attr({
                 width: '100%'
             });
 
             var title = $('<div/>').attr({
                 'class': 'windowfy-title windowfy-grab'
-            }).html(this.options.title).appendTo(header);
+            }).html(options.title).appendTo(header);
 
             var opts = $('<div/>').attr({
                 'class': 'windowfy-option'
             }).appendTo(header);
-            this.opts = opts;
-            if (this.options.minimize) {
+
+            if (options.minimize) {
                 $('<div/>').attr({
                     'class': 'windowfy-minimize'
                 }).html('-').on('click', function () {
-                    _this.options.onMinimize.call(_this);
+                    options.onMinimize();
                 }).appendTo(opts);
             }
 
-            if (this.options.close) {
+            if (options.close) {
                 $('<div/>').attr({
                     'class': 'windowfy-exit'
                 }).html('x').on('click', function () {
-                    _this.options.onClose.call(_this);
+                    options.onClose();
                 }).appendTo(opts);
             }
 
-            this.window.append(header).append(body);
-            if (!this.options.close && !this.options.minimize) {
+            outer.append(header).append(body);
+            if (!options.close && !options.minimize) {
                 title.css('width', '100%');
             }
             var offsetX = 0;
@@ -59,8 +60,8 @@
             $(document).on('mousedown', '.windowfy-title', function (evt) {
                 $(this).removeClass('windowfy-grab');
                 $(this).addClass('windowfy-grabbing');
-                offsetX = evt.pageX - _this.window.offset().left;
-                offsetY = evt.pageY - _this.window.offset().top;
+                offsetX = evt.pageX - outer.offset().left;
+                offsetY = evt.pageY - outer.offset().top;
             }).on('mouseup', function () {
                 title.addClass('windowfy-grab');
                 title.removeClass('windowfy-grabbing');
@@ -68,10 +69,11 @@
                 if (title.hasClass('windowfy-grabbing')) {
                     evt.preventDefault();
                     document.getSelection().removeAllRanges();
-                    _this.window.css({ left: (evt.pageX - offsetX) + 'px' });
-                    _this.window.css({ top: (evt.pageY - offsetY) + 'px' });
+                    outer.css({ left: (evt.pageX - offsetX) + 'px' });
+                    outer.css({ top: (evt.pageY - offsetY) + 'px' });
                 }
             });
-        }
-    });
+            return this;
+        });
+    }
 })( jQuery );

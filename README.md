@@ -14,3 +14,10 @@ $('element').windowfy(params)
     id: string
 */
 ````
+
+Including
+=========
+
+The minified JS file is at /<installation>/bin/jquery.windowfy.min.js
+
+The CSS file is at /<installation>/bin/jquery.windowfy.css

@@ -1,5 +1,5 @@
 (function ($) {
-    $.fn.windowfy = function(options) {
+    $.fn.windowfy = function(params) {
         return this.each(function() {
             var options = $.extend({
                 title: 'Window',
@@ -12,7 +12,7 @@
                 onMinimize: function () {
                     body.toggle();
                 }
-            }, options);
+            }, params);
 
             var element = $(this);
 

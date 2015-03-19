@@ -1,6 +1,6 @@
 {
   "name": "windowfy",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "jquery plugin to create window-based interfaces",
   "main": "bin/jquery.windowfy.min.js",
   "scripts": {

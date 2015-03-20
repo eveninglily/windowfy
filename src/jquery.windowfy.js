@@ -7,7 +7,7 @@
                 close: true,
                 id: '',
                 onClose: function () {
-                    outer.remove();
+                    $(this).remove();
                 },
                 onMinimize: function () {
                     body.toggle();
@@ -39,7 +39,7 @@
                 $('<div/>').attr({
                     'class': 'windowfy-minimize'
                 }).html('-').on('click', function () {
-                    options.onMinimize();
+                    options.onMinimize.call(outer);
                 }).appendTo(opts);
             }
 
@@ -47,7 +47,7 @@
                 $('<div/>').attr({
                     'class': 'windowfy-exit'
                 }).html('x').on('click', function () {
-                    options.onClose();
+                    options.onClose.call(outer);
                 }).appendTo(opts);
             }
 

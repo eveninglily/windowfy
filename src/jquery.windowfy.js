@@ -11,7 +11,14 @@
                 },
                 onMinimize: function () {
                     body.toggle();
-                }
+                    if($('.windowfy-minimize').get(0).html() == '-') {
+                        console.log('dgsdgji')
+                    } else {
+
+                    }
+                },
+                x: 0,
+                y: 0
             }, params);
 
             var element = $(this);
@@ -19,6 +26,9 @@
             var outer = $('<div/>').attr({
                 'class': 'windowfy',
                 'id': options.id
+            }).attr({
+                left: options.x,
+                top: options.y
             }).appendTo(element.parent());
 
             var body = $('<div>').attr('class','windowfy-body').append(this);

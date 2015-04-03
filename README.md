@@ -11,7 +11,9 @@ $('element').windowfy(params)
     close: true,
     onClose: function() {},
     onMinimize: function() {},
-    id: string
+    id: string,
+    x: int,
+    y: int
 */
 ````
 

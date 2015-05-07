@@ -11,11 +11,6 @@
                 },
                 onMinimize: function () {
                     body.toggle();
-                    if($('.windowfy-minimize').get(0).html() == '-') {
-                        console.log('dgsdgji')
-                    } else {
-
-                    }
                 },
                 x: 0,
                 y: 0
